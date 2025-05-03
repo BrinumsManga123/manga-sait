@@ -1,17 +1,19 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Мои Манга-отзывы</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Manga atdzime</title>
   <style>
-    body {
-      margin: 0;
-      display: flex;
-      font-family: sans-serif;
-      background-color: #f7ecb5;
-    }
-
+   body {
+  margin: 0;
+  display: flex;
+  font-family: sans-serif;
+  background-image: url('https://th.bing.com/th/id/R.d3a6edda76833bbba2b9a8bd95e188f1?rik=s4I%2bvRQd5PykAw&pid=ImgRaw&r=0');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center;
     .sidebar {
       width: 200px;
       background-color: #c7f28d;
@@ -84,31 +86,54 @@
 </head>
 <body>
   <div class="sidebar">
-    <button onclick="filterCards('all')">Название</button>
+    <button onclick="filterCards('all')">Все</button>
     <button onclick="filterCards('isekai')">Исекай</button>
     <button onclick="filterCards('romance')">Романтика</button>
     <button onclick="filterCards('school')">Школа</button>
     <button onclick="filterCards('war')">Военная</button>
   </div>
-  <div class="content" id="cardContainer">
-    <div class="card" data-genre="isekai">
-      <strong>Re:Zero</strong><br>
-      Парень попадает в другой мир и переживает боль и смерть снова и снова.<br>
-      Оценка: 9/10
-    </div>
-    <div class="card" data-genre="romance school">
-      <strong>Kimi ni Todoke</strong><br>
-      Стеснительная девушка находит друзей и первую любовь в школе.<br>
-      Оценка: 8/10
-    </div>
-    <div class="card" data-genre="war">
-      <strong>Attack on Titan</strong><br>
-      Человечество сражается против гигантов за выживание.<br>
-      Оценка: 10/10
+
+  <div class="main">
+    <h1>Manga atdzime</h1>
+
+    <form id="reviewForm">
+      <input type="text" id="title" placeholder="Название манги" required />
+      <textarea id="description" placeholder="Описание" required></textarea>
+      <input type="text" id="rating" placeholder="Оценка (например, 9/10)" required />
+      <select id="genre">
+        <option value="isekai">Исекай</option>
+        <option value="romance">Романтика</option>
+        <option value="school">Школа</option>
+        <option value="war">Военная</option>
+      </select>
+      <button type="submit">Добавить отзыв</button>
+    </form>
+
+    <div id="cardContainer">
+      <!-- Здесь будут карточки -->
     </div>
   </div>
 
   <script>
+    const form = document.getElementById('reviewForm');
+    const cardContainer = document.getElementById('cardContainer');
+
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+      const title = document.getElementById('title').value;
+      const description = document.getElementById('description').value;
+      const rating = document.getElementById('rating').value;
+      const genre = document.getElementById('genre').value;
+
+      const card = document.createElement('div');
+      card.className = 'card';
+      card.setAttribute('data-genre', genre);
+      card.innerHTML = `<strong>${title}</strong><br>${description}<br>Оценка: ${rating}`;
+      cardContainer.appendChild(card);
+
+      form.reset();
+    });
+
     function filterCards(genre) {
       const cards = document.querySelectorAll('.card');
       cards.forEach(card => {
