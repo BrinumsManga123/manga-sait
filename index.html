@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Мои Манга-отзывы</title>
+  <style>
+    body {
+      margin: 0;
+      display: flex;
+      font-family: sans-serif;
+      background-color: #f7ecb5;
+    }
+
+    .sidebar {
+      width: 200px;
+      background-color: #c7f28d;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .sidebar button {
+      padding: 10px;
+      border: none;
+      border-radius: 10px;
+      background-color: #a4f28a;
+      cursor: pointer;
+    }
+
+    .sidebar button:hover {
+      background-color: #91dd7c;
+    }
+
+    .content {
+      flex-grow: 1;
+      padding: 30px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .card {
+      background-color: #a4f28a;
+      border-radius: 20px;
+      padding: 20px;
+      max-width: 500px;
+      position: relative;
+    }
+
+    .card::after {
+      content: "";
+      position: absolute;
+      bottom: -20px;
+      left: 40px;
+      width: 0;
+      height: 0;
+      border: 20px solid transparent;
+      border-top-color: #a4f28a;
+      border-bottom: 0;
+      margin-left: -20px;
+    }
+  </style>
+</head>
+<body>
+  <div class="sidebar">
+    <button onclick="filterCards('all')">Название</button>
+    <button onclick="filterCards('isekai')">Исекай</button>
+    <button onclick="filterCards('romance')">Романтика</button>
+    <button onclick="filterCards('school')">Школа</button>
+    <button onclick="filterCards('war')">Военная</button>
+  </div>
+  <div class="content" id="cardContainer">
+    <div class="card" data-genre="isekai">
+      <strong>Re:Zero</strong><br>
+      Парень попадает в другой мир и переживает боль и смерть снова и снова.<br>
+      Оценка: 9/10
+    </div>
+    <div class="card" data-genre="romance school">
+      <strong>Kimi ni Todoke</strong><br>
+      Стеснительная девушка находит друзей и первую любовь в школе.<br>
+      Оценка: 8/10
+    </div>
+    <div class="card" data-genre="war">
+      <strong>Attack on Titan</strong><br>
+      Человечество сражается против гигантов за выживание.<br>
+      Оценка: 10/10
+    </div>
+  </div>
+
+  <script>
+    function filterCards(genre) {
+      const cards = document.querySelectorAll('.card');
+      cards.forEach(card => {
+        if (genre === 'all' || card.dataset.genre.includes(genre)) {
+          card.style.display = 'block';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    }
+  </script>
+</body>
+</html>
