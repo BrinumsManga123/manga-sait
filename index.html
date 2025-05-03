@@ -97,9 +97,9 @@
     <h1>Manga atdzime</h1>
 
     <form id="reviewForm">
-      <input type="text" id="title" placeholder="Название манги" required />
-      <textarea id="description" placeholder="Описание" required></textarea>
-      <input type="text" id="rating" placeholder="Оценка (например, 9/10)" required />
+      <input type="text" id="title" placeholder="Nosaukums mangas" required />
+      <textarea id="description" placeholder="Apraksts" required></textarea>
+      <input type="text" id="rating" placeholder="Vērtējums (piemēram, 9/10)" required />
       <select id="genre">
         <option value="isekai">fentizi</option>
         <option value="romance">Romantika</option>
@@ -128,7 +128,7 @@
       const card = document.createElement('div');
       card.className = 'card';
       card.setAttribute('data-genre', genre);
-      card.innerHTML = `<strong>${title}</strong><br>${description}<br>Оценка: ${rating}`;
+      card.innerHTML = `<strong>${title}</strong><br>${description}<br>Vērtējums: ${rating}`;
       cardContainer.appendChild(card);
 
       form.reset();
